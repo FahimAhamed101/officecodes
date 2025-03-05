@@ -1,36 +1,26 @@
 const homePageQuery = `
   query GetHomePage{
-    homePage {
-      data {
-        id
-        attributes {
-            title
-        }
-      }
-    }
+     homePage {
+    title
+  }
   }
 `;
 
 const postsQuery = `
   query GetPosts{
-    posts {
-      data {
-        id
-        attributes {
-            title
-            shortDescription
-            content
-            slug
-            image {
-                data {
-                    attributes {
-                      url
-                    }
-                }
-            }
-        }
-      }
+   posts {
+    documentId
+    title
+    content
+    shortDescription
+   
+    createdAt
+    updatedAt
+    publishedAt
+    image {
+      url
     }
+  }
   }
 `;
 

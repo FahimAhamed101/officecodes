@@ -7,10 +7,10 @@ import imageUrl from "@/utils/generate-image-url";
 export default async function Home() {
   const homePageData = await loadHomePage();
   const postsData = await loadPosts();
-
+console.log(postsData)
   return (
     <div className="container mt-5">
-      <div className="content">
+      <div className="content"> d d d
         <h1>{homePageData?.title}</h1>
         <div className="row">
           {postsData?.map((post, index) => {
@@ -20,7 +20,7 @@ export default async function Home() {
                   <div className="card-body">
                     <Image
                       src={imageUrl(
-                        post?.attributes?.image?.data?.attributes?.url
+                        post?.image?.url
                       )}
                       alt={"post details"}
                       width={350}
@@ -30,12 +30,12 @@ export default async function Home() {
                         height: "auto",
                       }}
                     />
-                    <h5 className="card-title">{post?.attributes?.title}</h5>
+                    <h5 className="card-title">{post?.title}</h5>
                     <p className="card-text">
-                      {post?.attributes?.shortDescription}
+                      {post?.shortDescription}
                     </p>
                     <Link
-                      href={`/${post?.attributes?.slug}`}
+                      href={`/${post?.slug}`}
                       className="card-link"
                     >
                       Continue Reading

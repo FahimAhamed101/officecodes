@@ -14,7 +14,7 @@ const loadHomePage = cache(async () => {
   try {
     const response = await request(graphqlUrl, query, variables);
     return response?.homePage;
-    console.log(response)
+   
   } catch (error) {
     console.error("Error fetching data from Strapi:", error);
     return null;
@@ -40,7 +40,8 @@ const loadPostDetails = cache(async (slug) => {
   };
   try {
     const response = await request(graphqlUrl, query, variables);
-    return response?.posts?.data[0];
+    return response?.posts[0];
+    console.log(response)
   } catch (error) {
     console.error("Error fetching data from Strapi:", error);
     return null;
@@ -52,7 +53,7 @@ const loadPostsPath = cache(async () => {
   const variables = {};
   try {
     const response = await request(graphqlUrl, query, variables);
-    return response?.posts?.data;
+    return response?.posts;
   } catch (error) {
     console.error("Error fetching data from Strapi:", error);
     return null;

@@ -13,7 +13,7 @@ const postsQuery = `
     title
     content
     shortDescription
-   
+   slug
     createdAt
     updatedAt
     publishedAt
@@ -27,22 +27,22 @@ const postsQuery = `
 const postDetailsQuery = `
 query GetPostDetail($slug: String) {
   posts(filters: { slug: { eq: $slug }}) {
-    data {
-      id
-      attributes {
+   
+     
+    
         title
         shortDescription
         content
         image {
-            data {
-                attributes {
+           
+               
                     url
-                }
-            }
+                
+          
         }
  
-     }
-    }
+     
+   
   }
 }
 `;
@@ -50,12 +50,12 @@ query GetPostDetail($slug: String) {
 const postsPathQuery = `
   query GetPostsPath{
     posts {
-      data {
-        id
-        attributes {
+      
+       
+        
             slug
-        }
-      }
+        
+      
     }
   }
 `;

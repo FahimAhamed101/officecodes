@@ -1,25 +1,8 @@
-import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-
-const httpLink = createHttpLink({
-  uri: 'http://localhost:1337/graphql', // Strapi GraphQL endpoint
-});
-
-const authLink = setContext((_, { headers }) => {
-  // Get the authentication token from local storage if it exists
-  const token = localStorage.getItem('token');
-  // Return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
-    }
-  }
-});
+import { ApolloClient, InMemoryCache } from '@apollo/client';
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
+  uri: 'http://localhost:1337/graphql',
+  cache: new InMemoryCache(),
 });
 
 export default client;

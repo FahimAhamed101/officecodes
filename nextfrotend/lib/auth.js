@@ -1,7 +1,10 @@
 "use client"
 import axios from 'axios';
 import { useRouter } from 'next/navigation';import { setCookie } from 'cookies-next';
-
+const handleLogout = () => {
+    localStorage.removeItem('token');
+    router.push('/login');
+  };
 export function LoginUser(identifier, password) {
   axios
     .post('http://localhost:1337/api/auth/local', {
@@ -12,8 +15,10 @@ export function LoginUser(identifier, password) {
       console.log('well done');
       console.log('user profile', response.data.user);
       console.log('user token', response.data.jwt);
+
       useRouter.push('/');
       setCookie('jwt', response.data.jwt);
+      localStorage.setItem('token', data.login.jwt);
     })
     .catch((err) => {
       console.log('An error has occured', err.response);
